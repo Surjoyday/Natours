@@ -20,7 +20,7 @@ exports.chechID = (req, res, next, val) => {
 exports.checkBody = (req, res, next) => {
   if (!req.body.name || !req.body.price) {
     return res.status(400).json({
-      status: "error",
+      status: "fail",
       message: "Missing name or price",
     });
   }
@@ -62,7 +62,7 @@ exports.createTour = (req, res) => {
   tours.push(newTour);
 
   fs.writeFile(
-    `${__dirname}/dev-data/data/tours-simple.json`,
+    `${__dirname}/../dev-data/data/tours-simple.json`,
     JSON.stringify(tours),
     (err) => {
       res.status(201).json({
